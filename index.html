@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="./index.js"></script>
+    <title>RockPaperScissor</title>
+  </head>
+  <body class="bg-black flex sm:flex-col flex-col-reverse justify-center align-center h-full">
+    <button onclick="muteAud()" class="mute absolute top-[40px] bg-white px-4 py-2 rounded-md w-[100px] ml-8">Mute</button>
+    <div
+    class="game-button w-full h-fit flex p-4 justify-center align-center gap-[20px] relative sm:top-[100px] top-[160px]"
+    >
+    <button onclick="rockPress()"
+    class="rock sm:w-[150px] sm:h-[150px] w-[100px] h-[100px] rounded-full border-white border-[4px] bg-black flex justify-center p-4 duration-150 hover:bg-white active:scale-[0.95]"
+    >
+    <img src="./rock.png" alt="" />
+  </button>
+
+  <button onclick="paperPress()"
+  class="paper sm:w-[150px] sm:h-[150px] w-[100px] h-[100px] rounded-full border-white border-[4px] bg-black flex justify-center p-4 duration-150 hover:bg-white active:scale-[0.95]"
+  >
+  <img src="./paper.png" alt="" />
+</button>
+
+<button onclick="scissorPress()"
+class="scissor sm:w-[150px] sm:h-[150px] w-[100px] h-[100px] rounded-full border-white border-[4px] bg-black flex justify-center p-4 duration-150 hover:bg-white active:scale-[0.95]"
+>
+<img src="./scissor.png" alt="" />
+</button>
+</div>
+
+    <h2
+      class="choice text-white text-4xl font-bold text-center relative sm:top-[150px] top-[125px]"
+    >
+      Your Move
+    </h2>
+    <div
+      class="choice-made flex relative gap-2 sm:top-[200px] top-[100px] p-4 justify-center-align-center w-full h-fit"
+    >
+      <div
+        class="w-full h-[100px] p-2 flex flex-col gap-2 justify-center bg-[#ffffff20] rounded-[10px]"
+      >
+        <h3 class="player text-white text-2xl font-bold text-center">your choice</h3>
+      </div>
+      <div
+        class="w-full h-[100px] p-2 flex flex-col gap-2 justify-center bg-[#ffffff20] rounded-[10px]"
+      >
+        <h3 class="pc text-white text-2xl font-bold text-center">
+          Computer choice
+        </h3>
+      </div>
+    </div>
+    <div
+      class="w-full h-fit flex gap-2 justify-center p-4 relative sm:top-[200px] top-[100px]"
+    >
+      <div
+        class="w-full h-[150px] rounded-[10px] bg-[#ffffff30] flex flex-col gap-4 justify-center"
+      >
+        <h3 class="text-white text-2xl font-bold text-center">Wins</h3>
+        <h3 class="result-win text-white text-2xl font-bold text-center">0</h3>
+      </div>
+      <div
+        class="w-full h-[150px] rounded-[10px] bg-[#ffffff30] flex flex-col gap-4 justify-center"
+      >
+        <h3 class="text-white text-2xl font-bold text-center">Loses</h3>
+        <h3 class="result-lose text-white text-2xl font-bold text-center">0</h3>
+      </div>
+      <div
+        class="w-full h-[150px] rounded-[10px] bg-[#ffffff30] flex flex-col gap-4 justify-center"
+      >
+        <h3 class="text-white text-2xl font-bold text-center">Draws</h3>
+        <h3 class="result-draw text-white text-2xl font-bold text-center">0</h3>
+      </div>
+    </div>
+    <audio id="win-aud" class="aud" src="./chime.wav"></audio>
+    <audio id="draw-aud" class="aud" src="./clink.mp3"></audio>
+    <audio id="lose-aud" class="aud" src="./violin.mp3"></audio>
+  </body>
+</html>
