@@ -13,19 +13,19 @@
     <div
     class="game-button w-full h-fit flex p-4 justify-center align-center gap-[20px] relative sm:top-[100px] top-[160px]"
     >
-    <button onclick="rockPress()"
+    <button onclick="rps('rock', 'scissor', 'paper')"
     class="rock sm:w-[150px] sm:h-[150px] w-[100px] h-[100px] rounded-full border-white border-[4px] bg-black flex justify-center p-4 duration-150 hover:bg-white active:scale-[0.95]"
     >
     <img src="./rock.png" alt="" />
   </button>
 
-  <button onclick="paperPress()"
+  <button onclick="rps('paper', 'rock', 'scissor')"
   class="paper sm:w-[150px] sm:h-[150px] w-[100px] h-[100px] rounded-full border-white border-[4px] bg-black flex justify-center p-4 duration-150 hover:bg-white active:scale-[0.95]"
   >
   <img src="./paper.png" alt="" />
 </button>
 
-<button onclick="scissorPress()"
+<button onclick="rps('scissor', 'paper', 'rock')"
 class="scissor sm:w-[150px] sm:h-[150px] w-[100px] h-[100px] rounded-full border-white border-[4px] bg-black flex justify-center p-4 duration-150 hover:bg-white active:scale-[0.95]"
 >
 <img src="./scissor.png" alt="" />

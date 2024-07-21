@@ -1,7 +1,7 @@
 let compChoice;
-let win = 0;
-let lose = 0;
-let draw = 0;
+let winCnt = 0;
+let loseCnt = 0;
+let drawCnt = 0;
 let audD = document.querySelector("#draw-aud");
 let audW = document.querySelector("#win-aud");
 let audL = document.querySelector("#lose-aud");
@@ -23,134 +23,43 @@ function muteAud() {
   }
 }
 
-function rockPress() {
-  compChoice = Math.floor(Math.random() * (4 - 1) + 1);
-  document.querySelector(".player").innerHTML = "Rock";
-  if (compChoice == 1) {
-    console.log("Draw");
-    document.querySelector(".result-draw").innerHTML = ++draw;
-    choice.innerHTML = "Draw";
-    pc.innerHTML = "Rock";
-    if (audD.paused && audW.paused && audL.paused) {
-      audD.play();
-    } else {
-      audW.pause();
-      audL.pause();
-      audD.currentTime = 0;
-      audD.play();
-    }
-  } else if (compChoice == 2) {
-    console.log("Win");
-    document.querySelector(".result-win").innerHTML = ++win;
-    choice.innerHTML = "Win!";
-    pc.innerHTML = "Scissor";
-    if (audD.paused && audW.paused && audL.paused) {
-      audW.play();
-    } else {
-      audD.pause();
-      audL.pause();
-      audW.currentTime = 0;
-      audW.play();
-    }
+function playAudio(main, other1, other2){
+  if (audD.paused && audW.paused && audL.paused) {
+    console.log(main);
+    main.play();
   } else {
-    console.log("Loose");
-    document.querySelector(".result-lose").innerHTML = ++lose;
-    choice.innerHTML = "Lose";
-    pc.innerHTML = "Paper";
-    if (audD.paused && audW.paused && audL.paused) {
-      audL.play();
-    } else {
-      audD.pause();
-      audW.pause();
-      audL.currentTime = 0;
-      audL.play();
-    }
+    other1.pause();
+    other2.pause();
+    main.currentTime = 0;
+    main.play();
   }
 }
-function paperPress() {
+
+function rps(draw, win, lose) {
   compChoice = Math.floor(Math.random() * (4 - 1) + 1);
-  document.querySelector(".player").innerHTML = "Paper";
-  if (compChoice == 2) {
-    document.querySelector(".result-draw").innerHTML = ++draw;
+
+  if(compChoice==1) compChoice = 'rock';
+  else if(compChoice == 2) compChoice = 'paper';
+  else compChoice = 'scissor';
+
+  document.querySelector(".player").innerHTML = draw;
+
+  if (compChoice == draw) {
+    document.querySelector(".result-draw").innerHTML = ++drawCnt;
     choice.innerHTML = "Draw";
-    pc.innerHTML = "Paper";
-    if (audD.paused && audW.paused && audL.paused) {
-      audD.play();
-    } else {
-      audW.pause();
-      audL.pause();
-      audD.currentTime = 0;
-      audD.play();
-    }
-  } else if (compChoice == 1) {
-    console.log("Win");
-    document.querySelector(".result-win").innerHTML = ++win;
+    pc.innerHTML = draw;
+    playAudio(audD, audW, audL);
+  } 
+  else if (compChoice == win) {
+    document.querySelector(".result-win").innerHTML = ++winCnt;
     choice.innerHTML = "Win!";
-    pc.innerHTML = "Rock";
-    if (audD.paused && audW.paused && audL.paused) {
-      audW.play();
-    } else {
-      audD.pause();
-      audL.pause();
-      audW.currentTime = 0;
-      audW.play();
-    }
-  } else {
-    console.log("Loose");
-    document.querySelector(".result-lose").innerHTML = ++lose;
+    pc.innerHTML = win;
+    playAudio(audW, audD, audL);
+  } 
+  else {
+    document.querySelector(".result-lose").innerHTML = ++loseCnt;
     choice.innerHTML = "Lose";
-    pc.innerHTML = "Scissor";
-    if (audD.paused && audW.paused && audL.paused) {
-      audL.play();
-    } else {
-      audD.pause();
-      audW.pause();
-      audL.currentTime = 0;
-      audL.play();
-    }
-  }
-}
-function scissorPress() {
-  compChoice = Math.floor(Math.random() * (4 - 1) + 1);
-  document.querySelector(".player").innerHTML = "Scissor";
-  if (compChoice == 3) {
-    console.log("Draw");
-    document.querySelector(".result-draw").innerHTML = ++draw;
-    choice.innerHTML = "Draw";
-    pc.innerHTML = "Scissor";
-    if (audD.paused && audW.paused && audL.paused) {
-      audD.play();
-    } else {
-      audW.pause();
-      audL.pause();
-      audD.currentTime = 0;
-      audD.play();
-    }
-  } else if (compChoice == 2) {
-    console.log("Win");
-    document.querySelector(".result-win").innerHTML = ++win;
-    choice.innerHTML = "Win!";
-    pc.innerHTML = "Paper";
-    if (audD.paused && audW.paused && audL.paused) {
-      audW.play();
-    } else {
-      audD.pause();
-      audL.pause();
-      audW.currentTime = 0;
-      audW.play();
-    }
-  } else {
-    console.log("Loose");
-    document.querySelector(".result-lose").innerHTML = ++lose;
-    choice.innerHTML = "Lose";
-    pc.innerHTML = "Rock";
-    if (audD.paused && audW.paused && audL.paused) {
-      audL.play();
-    } else {
-      audD.pause();
-      audW.pause();
-      audL.currentTime = 0;
-      audL.play();
-    }
+    pc.innerHTML = lose;
+    playAudio(audL, audD, audW);
   }
 }
